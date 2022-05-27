@@ -25,6 +25,10 @@ Given $x \in \mathbb{N}$ and $y \in \mathbb{N}_0$, a dyadic interval is defined 
 
 $$ D_{x,y} = [(x-1)2^y+1, \, x2^y] $$
 
+Given an interval $[1,n]$, where $n$ is a power of 2, we can construct a binary tree with all the dyadic intervals contained in $[1,n]$ as follows:
+
+![Dyadic tree](Images/dyadic_tree.png)
+
 ## References
 
 <blockquote> Cormode, Graham, and Shan Muthukrishnan. "An improved data stream summary: the count-min sketch and its applications." Journal of Algorithms 55, no. 1 (2005): 58-75. </blockquote>
