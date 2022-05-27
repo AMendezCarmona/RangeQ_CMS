@@ -17,8 +17,13 @@ For a more detailed description of the data structure and its methods, see [(Cor
 
 ## Range Queries using CMS
 
-A range query computes the sum of the frequencies for all the elements between and interval $\[l,r\]$.
+A range query computes the sum of the frequencies for all the elements between and interval $\[l,r\]$. A naive approach to answer this type of query would be to make a point query for all elements using a CMS, i.e. obtaining a frequency estimation for each one of the elements included in the interval and then suming them up, but this way the estimation error would increase linearly with the size of the interval. A concrete procedure for range queries was described in [(Cormode and Muthukrishan 2005)](https://github.com/AMendezCarmona/RangeQ_CMS#references) that intended to solve this problem.
 
+### Dyadic Intervals and Dyadic Trees
+
+Given $x \in \mathbb{N}$ and $y \in \mathbb{N}_0$, a dyadic interval is defined as:
+
+$$ D_{x,y} = [(x-1)2^y+1, \, x2^y] $$
 
 ## References
 
