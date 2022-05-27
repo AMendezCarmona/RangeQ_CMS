@@ -27,7 +27,33 @@ $$ D_{x,y} = [(x-1)2^y+1, \, x2^y] $$
 
 Given an interval $[1,n]$, where $n$ is a power of 2, we can construct a binary tree with all the dyadic intervals contained in $[1,n]$ as follows:
 
-<img src="Images/dyadic_tree.png" width="200"/>
+<img src="Images/dyadic_tree.png" width="500"/>
+
+Using this dyadic tree, for any given interval $[l,r], \; 1 \leq l \leq r \leq n$, we can obtain the minimum cardinality dyadic cover, which would be of cardinality at most $2\log (n)$.
+
+
+### Dyadic Trees and Count-Min Sketch
+
+Given the dyadic tree built upon an interval $[1,n]$, the data structure for answering range queries using dyadic intervals uses $\log (n)+1$ sketches, one for each height of the dyadic tree. In short, for each interval $D_{x,y} \in C$, where $C$ refers to the minimum cardinality dyadic cover of an interval $[l,r]$, element $x$ is added to the sketch associated to height $y$ in the dyadic tree. To obtain the frequency estimation of all elements in an interval $[l,r]$, at most $2\log (n)$ point queries will be made, corresponding to the cardinality of the minimum cardinality dyadic cover of the queried interval. A much more detailed explanation of the procedure can be found in [(Cormode and Muthukrishan 2005)](https://github.com/AMendezCarmona/RangeQ_CMS#references).
+
+## Example of use
+
+```pycon
+>>> from rangeqcms import *
+>>> dt = DyadicTree(16, epsilon = 0.05, delta = 0.01)
+>>> for i in range(1, 17):
+...     dt.add(i)
+... 
+>>> dt.range_query(1,16)
+16.0
+>>> dt.range_query(2,12)
+11.0
+>>> dt.range_query(8,9)
+2.0
+>>> dt.range_query(13,13)
+1.0
+```
+
 
 ## References
 
