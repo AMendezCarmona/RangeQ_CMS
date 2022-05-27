@@ -27,7 +27,7 @@ $$ D_{x,y} = [(x-1)2^y+1, \, x2^y] $$
 
 Given an interval $[1,n]$, where $n$ is a power of 2, we can construct a binary tree with all the dyadic intervals contained in $[1,n]$ as follows:
 
-![Dyadic tree](Images/dyadic_tree.png)
+<img src="Images/dyadic_tree.png" width="200"/>
 
 ## References
 
