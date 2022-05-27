@@ -9,7 +9,15 @@ This method becomes useful with huge datasets where it is difficult (or even imp
 
 ## Count-Min Sketch
 
-Probabilistic data structure 
+Probabilistic data structure described in [(Cormode and Muthukrishan 2005)](https://github.com/AMendezCarmona/RangeQ_CMS#references) intended for storing a sublinear approximation of a given set. This method receives elements in a stream and can estimate the frequency of any element within a margin of error.
+
+The data stucture consist of a two-dimensional $m \times p$. Given $\epsilon$ and $\delta$, CMS guarantees an estimation error within an additive error of $\epsilon$ with probability $\delta$. The dimension of the sketch can be then determined as $p = \lceil \ln(1/\delta) \rceil$ and $m = \lceil e/\epsilon \rceil$.
+
+For a more detailed description of the data structure and its methods, see [(Cormode and Muthukrishan 2005)](https://github.com/AMendezCarmona/RangeQ_CMS#references).
+
+## Range Queries using CMS
+
+A range query computes the sum of the frequencies for all the elements between and interval $\[l,r\]$.
 
 
 ## References
