@@ -1,12 +1,7 @@
 
 import math
 import numpy as np
-import random
-import sys
-from heapdict import heapdict
-from collections import defaultdict
 import mmh3
-import matplotlib.pyplot as plt
 
 
 def dyadic_interval(x,y):
@@ -39,7 +34,7 @@ class CountMinSketch:
 
     This class has two parameters:
 
-        - epsilon: factor fo estimation error, [0,1]
+        - epsilon: factor of estimation error, [0,1]
         - delta: probability of obtaining and error within a factor of epsilon, [0,1]
     
     Using these two parameters, a zero matrix of size M x P is generated, where:
@@ -79,24 +74,27 @@ class CountMinSketch:
 
 
 class DyadicTree:
+    '''
+    A class for building a Dyadic Tree based on an interval [1,n]. This will consist
+    on a binary tree made out of all the dyadic intervals contained in [1,n].
+    A CMS will be associated whit each one of the heights of the tree.
+
+    This class receives three parameters:
+
+        - max_value: the maximum value that can appear in the stream.
+        - epsilon & delta: parameters to build the CMS's for each height of the tree
+
+    The method `add` updates all the CMS's when a new value from the stream arrives.
+
+    The method `range_query` estimates the sum of the frequencies of all elements
+    in a given interval [l,r]
+    '''
     def __init__(self, max_value, epsilon, delta):
-        # El método recibe como argumentos el mayor valor que puede aparecer
-        # en el stream, y los parámetros epsilon y delta para generar
-        # los Count-Min Sketches
-        
-        # La altura del árbol es calculada como el log2 del valor máximo
-        # (redondeado al alza, por si el valor no fuera potencia de 2) más 1
         self.height = math.ceil(math.log2(max_value))+1
         
-        # Se genera una lista con un Count-Min Sketch por cada altura
         self.cm_sketch = [CountMinSketch(epsilon,delta) for h in range(self.height)]
                 
     def add(self, value):
-        # Este algoritmo añade, para cada intervalo Dxy
-        # en el que esta presente el último valor del stream,
-        # el elemento x al Count-Min Sketch asociado a la altura
-        # en la que se encuentra Dxy en el árbol diádico
-        
         x = 1
         for h in range(len(self.cm_sketch)):
             y = (self.height-1)-h
@@ -111,13 +109,6 @@ class DyadicTree:
                     x = x*2
                     
     def range_query(self, l, r, x = 1, y = None):
-        # Una explicación detallada del algoritmo para encontrar
-        # el conjunto de mínima cobertura de un árbol diádico se encuentra
-        # al final del notebook.
-        
-        # Sumamos, para cada intervalo diádico Dxy en el conjunto de mínima
-        # cobertura, la estimación de frecuencia del elemento x del Count Min Sketch
-        # asociado a la altura del árbol en el que se encuentra el intervalo
         if y is None: y = self.height-1
         
         min_v, max_v = dyadic_interval(x,y)
