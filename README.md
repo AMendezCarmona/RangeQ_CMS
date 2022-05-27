@@ -1,5 +1,18 @@
 # Range Queries using Count-Min Sketch
 
+## Table of contents
+
+* [Overview](https://github.com/AMendezCarmona/RangeQ_CMS#overview)
+* [Count-Min Sketch](https://github.com/AMendezCarmona/RangeQ_CMS#count-min-sketch)
+* [Range Queries using CMS](https://github.com/AMendezCarmona/RangeQ_CMS#range-queries-using-CMS)
+    - [Dyadic Intervals and Dyadic Trees](https://github.com/AMendezCarmona/RangeQ_CMS#dyadic-intervals-and-dyadic-trees)
+    - [Dyadic Trees and Count-Min Sketch](https://github.com/AMendezCarmona/RangeQ_CMS#dyadic-trees-and-count-min-sketch)
+* [Example of use](https://github.com/AMendezCarmona/RangeQ_CMS#example-of-use)
+* [References](https://github.com/AMendezCarmona/RangeQ_CMS#references)
+    
+
+
+
 ## Overview
 
 RangeQ_CMS is a Python implementation of the algorithm described in [(Cormode and Muthukrishan 2005)](https://github.com/AMendezCarmona/RangeQ_CMS#references), that provides a method for the obtention of estimated Range Queries using Count-Min Sketch and Dyadic Intervals.
